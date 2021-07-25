@@ -83,8 +83,8 @@
             <h2>Resultados:</h2>
             <?php 
                 if ($_POST) {calcDelta($conexao);}
-                if ($_POST) {calcX1($conexao);}
-                if ($_POST) {calcX2($conexao);}
+                // if ($_POST) {calcX1($conexao);}
+                // if ($_POST) {calcX2($conexao);}
             ?>
             <!-- <p>Portanto, as raízes da equação são:</p><b><//?php echo "x1= " .$mais. "<br>" . "x2= " .$menos. "" ?></b> -->
             
