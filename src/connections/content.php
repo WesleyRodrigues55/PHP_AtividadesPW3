@@ -1,12 +1,7 @@
 <?php
+    // inclui banco e funcoes
     include("conexao.php");
-
-    // recebe valores
-    $a = $_GET['a'];
-    $b = $_GET['b'];
-    $c = $_GET['c'];
-    $mais = $_GET['mais'];
-    $menos = $_GET['menos'];
+    include("functions.php");
 ?>
 
 
@@ -31,7 +26,7 @@
         <div class="col-md-9">
             <div class="row">
                 <div class="col-md-12 card card-body mt-2">
-                    <form class="form-group" action="content_con.php" method="post">
+                    <form class="form-group" method="post">
                         <h1>Calcule o Delta.</h1>
                         <b>* Δ = b2 – 4ac</b>
                         <div class="row">
@@ -61,13 +56,10 @@
                         <b>* x = – b + √Δ / 2·a</b>
                         <div class="row box-x">
                             <div class="col-md-12">
-                                <input class="form-control form-x" readonly value='<?php echo "valor de A= " . $a; ?>'>
+                                <input class="form-control form-x" readonly value='<?php if ($_POST) {a();} ?>'>
                             </div>
                             <div class="col-md-12">
-                                <input class="form-control form-x" readonly value='<?php echo "valor de B= " . $b; ?>'>
-                            </div>
-                            <div class="col-md-12">
-                                <input class="form-control form-x" readonly value='<?php echo "valor de C= " . $c; ?>'>
+                                <input class="form-control form-x" readonly value='<?php if ($_POST) {b();} ?>'>
                             </div>
                         </div>
                     </form>
@@ -79,13 +71,10 @@
                         <b>* x = – b - √Δ / 2·a</b>
                         <div class="row box-x">
                             <div class="col-md-12">
-                                <input class="form-control form-x" readonly value='<?php echo "valor de A= " . $a; ?>'>
+                                <input class="form-control form-x" readonly value='<?php if ($_POST) {a();} ?>'>
                             </div>
                             <div class="col-md-12">
-                                <input class="form-control form-x" readonly value='<?php echo "valor de B= " . $b; ?>'>
-                            </div>
-                            <div class="col-md-12">
-                                <input class="form-control form-x" readonly value='<?php echo "valor de C= " . $c; ?>'>
+                                <input class="form-control form-x" readonly value='<?php if ($_POST) {b();} ?>'>
                             </div>
                         </div>
                     </form>
@@ -94,8 +83,13 @@
         </div>
         <div class="col-md-3 card card-body mt-2">
             <h2>Resultados:</h2>
-            <p>Resultado Delta =</p><b><?php $x = $_GET['delta']; echo $x;?></b><br>
-            <p>Portanto, as raízes da equação são:</p><b><?php echo "x1= " .$mais. "<br>" . "x2= " .$menos. "" ?></b>
+            <?php 
+                if ($_POST) {calcDelta($conexao);}
+                if ($_POST) {calcX1($conexao);}
+                if ($_POST) {calcX2($conexao);}
+            ?>
+            <!-- <p>Portanto, as raízes da equação são:</p><b><//?php echo "x1= " .$mais. "<br>" . "x2= " .$menos. "" ?></b> -->
+            
         </div>
     </div><!-- fim row -->
 </div>

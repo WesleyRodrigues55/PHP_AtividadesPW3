@@ -12,7 +12,7 @@
 </head>
 <body>
    
-    <a href="connections/content.php?delta=0&a=0&b=0&c=0&mais=0&menos=0" style="text-decoration: none;">
+    <a href="connections/content.php" style="text-decoration: none;">
         <h1 class="container card card-body mt-5 bg-dark text-center">
             Iniciar
         </h1>
