@@ -14,6 +14,9 @@
             //verifica se o valor de delta é negativo
             if ($calcDelta < 0) {
                 echo "O valor de delta não pode ser negativo, refaça os cálculos...";
+            } 
+            else if ($calcDelta == "0") {
+                echo "O valor de delta não pode ser 0 (zero), refaça os cálculos...";
             } else {
                 echo "<b>O valor de Delta é = $calcDelta</b>";
                 // criando calc x1 e x2 apenas para armazenar no banco
