@@ -15,8 +15,6 @@ class Bhaskara extends BaseController
 		$this->a_vlr = $this->request->getPost()['valor_a'];
 		$this->b_vlr = $this->request->getPost()['valor_b'];
 		$this->c_vlr = $this->request->getPost()['valor_c'];
-		// $this->codigo = $this->request->getPost()['ID'];
-
 	}
 
 
@@ -79,11 +77,22 @@ class Bhaskara extends BaseController
 		$bhaskaraModel = new \App\Models\BhaskaraModel();
 
         $todos = $bhaskaraModel->findAll();
-        $data['tabela'] = $todos;
+        
 
+		echo '<pre>';
+		foreach ($todos as $key => $linha) {
+			$todos[$key]['delete'] = '<a href="excluir/' . $linha['id'] .'" class="btn btn-danger">Excluir</a>';
+		}
+
+		foreach ($todos as $key => $linha) {
+			$todos[$key]['alter'] = '<a href="ListarAlteracao/' . $linha['id'] . '" class="btn btn-info">Alterar</a>';
+		}
+
+		$data['tabela'] = $todos;
         echo view('dados', $data);
 
     }
+
 
 	public function insert_db()
 	{
@@ -102,27 +111,33 @@ class Bhaskara extends BaseController
 		$bhaskaraModel->save($data);
 	}
 
-	public function excluir()
+	public function excluir($id = null)
     {
         //instancia model
         $bhaskaraModel = new \App\Models\BhaskaraModel();
 
-		$this->codigo = $this->request->getPost()['codigo'];
+		// $this->codigo = $this->request->getPost()['codigo'];
 
-        $result = $bhaskaraModel->delete($this->codigo);
+        $result = $bhaskaraModel->delete($id);
 
-		$this->consultar();
+		// $this->consultar();
+		$x = '<a href="../../">Voltar</a>';
+
+		echo $x;
     }
 
-	public function ListarAlteracao()
-	{
-		$this->codigo = $this->request->getPost()['codigo'];
-		
 
+	public function ListarAlteracao($id = null)
+	{
 		//instancia model
 		$bhaskaraModel = new \App\Models\BhaskaraModel();
 
-		$todos = $bhaskaraModel->find($this->codigo);
+		if ($id == null) {
+			// exit;
+			return $this->consultar();
+		}
+
+		$todos = $bhaskaraModel->find($id);
 
 		$dados['dados'] = $todos;
 
