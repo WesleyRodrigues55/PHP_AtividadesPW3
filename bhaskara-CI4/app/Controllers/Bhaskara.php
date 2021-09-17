@@ -82,9 +82,6 @@ class Bhaskara extends BaseController
 		echo '<pre>';
 		foreach ($todos as $key => $linha) {
 			$todos[$key]['delete'] = '<a href="excluir/' . $linha['id'] .'" class="btn btn-danger">Excluir</a>';
-		}
-
-		foreach ($todos as $key => $linha) {
 			$todos[$key]['alter'] = '<a href="ListarAlteracao/' . $linha['id'] . '" class="btn btn-info">Alterar</a>';
 		}
 
