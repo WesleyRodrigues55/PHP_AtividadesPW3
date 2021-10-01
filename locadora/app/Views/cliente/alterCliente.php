@@ -1,0 +1,63 @@
+<h1>Alteração de dados do Cliente selecionado</h1>
+<?php
+    $estados = [$dados['TB_CLIENTE_UF'] => $dados['TB_CLIENTE_UF'], 'AC'=> 'AC','AL'=> 'AL','AP'=> 'AP','AM'=> 'AM','BA'=> 'BA','CE'=> 'CE','DF'=> 'DF','ES'=> 'ES','GO'=> 'GO','MA'=> 'MA','MT'=> 'MT','MS'=> 'MS','MG'=> 'MG','PA'=> 'PA','PB'=> 'PB','PR'=> 'PR','PE'=> 'PE','PI'=> 'PI','RJ'=> 'RJ','RN'=> 'RN','RS'=> 'RS','RO'=> 'RO','RR'=> 'RR','SC'=> 'SC','SP'=> 'SP','SE'=> 'SE','TO'=> 'TO'];
+    $sexo = [$dados['TB_CLIENTE_SEXO'] => $dados['TB_CLIENTE_SEXO'], 'M' => 'Masculino', 'F' => 'Feminino'];
+
+    helper('form');
+    echo form_open('cliente/alterar');
+        echo form_label('ID');
+        echo '<br>';
+        echo form_input('ID', $dados['TB_CLIENTE_ID'], 'required', 'readonly');
+        echo '<br><br>';
+        echo form_label('Nome');
+        echo '<br>';
+        echo form_input('nome', $dados['TB_CLIENTE_NOME'], 'required');
+        echo '<br><br>';
+        echo form_label('Telefone');
+        echo '<br>';
+        echo form_input('tel',  $dados['TB_CLIENTE_TEL'], 'required');
+        echo '<br><br>';
+        echo form_label('Sexo');
+        echo '<br>';
+        echo form_dropdown('sexo',$sexo);
+        echo '<br><br>';
+        echo form_label('E-mail');
+        echo '<br>';
+        echo form_input('email',  $dados['TB_CLIENTE_EMAIL'], 'required');
+        echo '<br><br>';
+        echo form_label('Senha');
+        echo '<br>';
+        echo form_input('senha',  $dados['TB_CLIENTE_SENHA'], 'required');
+        echo '<br><br>';
+        echo form_label('Endereco');
+        echo '<br>';
+        echo form_input('endereco',  $dados['TB_CLIENTE_ENDERECO'], 'required');
+        echo '<br><br>';
+        echo form_label('Complemento');
+        echo '<br>';
+        echo form_input('complemento',  $dados['TB_CLIENTE_COMPLEMENTO'], 'required');
+        echo '<br><br>';
+        echo form_label('Bairro');
+        echo '<br>';
+        echo form_input('bairro',  $dados['TB_CLIENTE_BAIRRO'], 'required');
+        echo '<br><br>';
+        echo form_label('Cidade');
+        echo '<br>';
+        echo form_input('cidade',  $dados['TB_CLIENTE_CIDADE'], 'required');
+        echo '<br><br>';
+        echo form_label('UF');
+        echo '<br>';
+        echo form_dropdown('uf', $estados);
+        echo '<br><br>';
+        echo form_label('Data de nascimento');
+        echo '<br>';
+        echo form_input('nasc',  $dados['TB_CLIENTE_DT_NASC'], 'required', 'date');
+        echo '<br><br>';
+        echo form_label('Data de cadastro');
+        echo '<br>';
+        echo form_input('dtcad',  $dados['TB_CLIENTE_DT_CAD'], 'required', 'date');
+        echo '<br><br>';
+        echo form_submit('mysubmit', 'Alterar dados',);
+    echo form_close();
+
+?>
