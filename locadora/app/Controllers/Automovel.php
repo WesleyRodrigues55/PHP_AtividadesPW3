@@ -17,8 +17,8 @@ class Automovel extends BaseController
         $query = $builder->get()->getResultArray();
 
         foreach ($query as $key => $value) {
-            $query[$key]['alterar'] = '<a href="view_alterar/' . $value['TB_AUTOMOVEL_ID'] . '">Alterar</a>';
-            $query[$key]['excluir'] = '<a href="excluir/' . $value['TB_AUTOMOVEL_ID'] . '">Excluir</a>';
+            $query[$key]['alterar'] = '<a href="view_alterar/' . $value['TB_AUTOMOVEL_ID'] . '" class="btn btn-dark">Alterar</a>';
+            $query[$key]['excluir'] = '<a href="excluir/' . $value['TB_AUTOMOVEL_ID'] . '" class="btn btn-danger">Excluir</a>';
 
             unset($query[$key]['TB_MARCA_ID']);
             unset($query[$key]['TB_MODELO_ID']);
@@ -27,7 +27,9 @@ class Automovel extends BaseController
         }
         $table['tabela'] = $query;
         
-		return view('automovel/automovel', $table);
+		return view('head') .
+                view('automovel/automovel', $table) .
+                view('footer');
 	}
 
     public function view_alterar($id = null)
@@ -38,7 +40,9 @@ class Automovel extends BaseController
 
         $dados['dados'] = $data;
 
-        echo view('automovel/alterAutomovel', $dados);
+        echo view('head') .
+            view('automovel/alterAutomovel', $dados) .
+            view('footer');
     }
 
     public function alterar()
@@ -90,6 +94,8 @@ class Automovel extends BaseController
 
     public function cadastrar()
     {
-        return view('automovel/cadAutomovel');  
+        return view('head') .
+            view('automovel/cadAutomovel') .
+            view('footer');  
     }
 }

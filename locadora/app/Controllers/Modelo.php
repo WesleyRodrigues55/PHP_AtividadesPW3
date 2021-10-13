@@ -12,12 +12,14 @@ class Modelo extends BaseController
         $data = $bd->findAll();
 
         foreach ($data as $key => $value) {
-            $data[$key]['alterar'] = '<a href="view_alterar/' . $value['TB_MODELO_ID'] . '">Alterar</a>';
-            $data[$key]['excluir'] = '<a href="excluir/' . $value['TB_MODELO_ID'] . '">Excluir</a>';
+            $data[$key]['alterar'] = '<a href="view_alterar/' . $value['TB_MODELO_ID'] . '" class="btn btn-dark">Alterar</a>';
+            $data[$key]['excluir'] = '<a href="excluir/' . $value['TB_MODELO_ID'] . '" class="btn btn-danger">Excluir</a>';
         }
         $table['tabela'] = $data;
         
-		return view('modelo/modelo', $table);
+		return view('head') .
+            view('modelo/modelo', $table) . 
+            view('footer');
 	}
 
     public function view_alterar($id = null)
@@ -28,7 +30,9 @@ class Modelo extends BaseController
 
         $dados['dados'] = $data;
 
-        echo view('modelo/alterModelo', $dados);
+        echo view('head') .
+            view('modelo/alterModelo', $dados) .
+            view('footer');
     }
 
     public function alterar()
@@ -69,6 +73,8 @@ class Modelo extends BaseController
 
     public function cadastrar()
     {
-        return view('modelo/cadModelo');  
+        return  view('head') .
+            view('modelo/cadModelo') .
+            view('footer');  
     }
 }

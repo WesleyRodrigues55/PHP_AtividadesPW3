@@ -13,12 +13,14 @@ class Cargo extends BaseController
         $data = $bd->findAll();
 
         foreach ($data as $key => $value) {
-            $data[$key]['alterar'] = '<a href="view_alterar/' . $value['TB_CARGO_ID'] . '">Alterar</a>';
-            $data[$key]['excluir'] = '<a href="excluir/' . $value['TB_CARGO_ID'] . '">Excluir</a>';
+            $data[$key]['alterar'] = '<a href="view_alterar/' . $value['TB_CARGO_ID'] . '" class="btn btn-dark">Alterar</a>';
+            $data[$key]['excluir'] = '<a href="excluir/' . $value['TB_CARGO_ID'] . '" class="btn btn-danger">Excluir</a>';
         }
         $table['tabela'] = $data;
         
-		return view('cargo/cargo', $table);
+		return view('head') . 
+            view('cargo/cargo', $table) . 
+            view('footer');
 	}
 
     public function view_alterar($id = null)
@@ -29,7 +31,9 @@ class Cargo extends BaseController
 
         $dados['dados'] = $data;
 
-        echo view('cargo/alterCargo', $dados);
+        echo view('head') .
+            view('cargo/alterCargo', $dados) . 
+            view('footer');
     }
 
     public function alterar()
@@ -66,6 +70,8 @@ class Cargo extends BaseController
 
     public function cadastrar()
     {
-        return view('cargo/cadCargo');  
+        return view('head') .
+            view('cargo/cadCargo') . 
+            view('footer');  
     }
 }

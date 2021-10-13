@@ -13,12 +13,14 @@ class Marca extends BaseController
         $data = $bd->findAll();
 
         foreach ($data as $key => $value) {
-            $data[$key]['alterar'] = '<a href="view_alterar/' . $value['TB_MARCA_ID'] . '">Alterar</a>';
-            $data[$key]['excluir'] = '<a href="excluir/' . $value['TB_MARCA_ID'] . '">Excluir</a>';
+            $data[$key]['alterar'] = '<a href="view_alterar/' . $value['TB_MARCA_ID'] . '" class="btn btn-dark">Alterar</a>';
+            $data[$key]['excluir'] = '<a href="excluir/' . $value['TB_MARCA_ID'] . '" class="btn btn-danger">Excluir</a>';
         }
         $table['tabela'] = $data;
         
-		return view('marca/marca', $table);
+		return view('head') .
+            view('marca/marca', $table) . 
+            view('footer');
 	}
 
     public function view_alterar($id = null)
@@ -29,7 +31,9 @@ class Marca extends BaseController
 
         $dados['dados'] = $data;
 
-        echo view('marca/alterMarca', $dados);
+        echo view('head') .
+            view('marca/alterMarca', $dados) . 
+            view('footer');
     }
 
     public function alterar()
@@ -66,6 +70,8 @@ class Marca extends BaseController
 
     public function cadastrar()
     {
-        return view('marca/cadMarca');  
+        return view('head') .
+            view('marca/cadMarca') . 
+            view('footer');  
     }
 }

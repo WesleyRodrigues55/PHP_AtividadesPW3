@@ -12,14 +12,16 @@ class Cliente extends BaseController
         $data = $bd->findAll();
 
         foreach ($data as $key => $value) {
-            $data[$key]['alterar'] = '<a href="view_alterar/' . $value['TB_CLIENTE_ID'] . '">Alterar</a>';
-            $data[$key]['excluir'] = '<a href="excluir/' . $value['TB_CLIENTE_ID'] . '">Excluir</a>';
+            $data[$key]['alterar'] = '<a href="view_alterar/' . $value['TB_CLIENTE_ID'] . '" class="btn btn-dark">Alterar</a>';
+            $data[$key]['excluir'] = '<a href="excluir/' . $value['TB_CLIENTE_ID'] . '" class="btn btn-danger">Excluir</a>';
 
             unset($data[$key]['TB_CLIENTE_SENHA']);
         }
         $table['tabela'] = $data;
         
-		return view('cliente/cliente', $table);
+		return view('head') .
+            view('cliente/cliente', $table) .
+            view('footer');
 	}
 
     public function view_alterar($id = null)
@@ -30,7 +32,9 @@ class Cliente extends BaseController
 
         $dados['dados'] = $data;
 
-        echo view('cliente/alterCliente', $dados);
+        echo view('head') .
+            view('cliente/alterCliente', $dados) . 
+            view('footer');
     }
 
     public function alterar()
@@ -90,6 +94,8 @@ class Cliente extends BaseController
 
     public function cadastrar()
     {
-        return view('cliente/cadCliente');  
+        return view('head') .
+            view('cliente/cadCliente') . 
+            view('footer');  
     }
 }

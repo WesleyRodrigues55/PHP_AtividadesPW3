@@ -17,12 +17,14 @@ class Locacao extends BaseController
         $query = $builder->get()->getResultArray();
 
         foreach ($query as $key => $value) {
-            $query[$key]['alterar'] = '<a href="view_alterar/' . $value['TB_LOCACAO_ID'] . '">Alterar</a>';
-            $query[$key]['excluir'] = '<a href="excluir/' . $value['TB_LOCACAO_ID'] . '">Excluir</a>';
+            $query[$key]['alterar'] = '<a href="view_alterar/' . $value['TB_LOCACAO_ID'] . '" class="btn btn-dark">Alterar</a>';
+            $query[$key]['excluir'] = '<a href="excluir/' . $value['TB_LOCACAO_ID'] . '" class="btn btn-danger">Excluir</a>';
         }
         $table['tabela'] = $query;
         
-		return view('locacao/locacao', $table);
+		return view('head') .
+            view('locacao/locacao', $table) . 
+            view('footer');
 	}
 
     public function view_alterar($id = null)
@@ -33,7 +35,9 @@ class Locacao extends BaseController
 
         $dados['dados'] = $data;
 
-        echo view('locacao/alterLocacao', $dados);
+        echo view('head') .
+            view('locacao/alterLocacao', $dados) . 
+            view('footer');
     }
 
     public function alterar()
@@ -82,6 +86,8 @@ class Locacao extends BaseController
 
     public function cadastrar()
     {
-        return view('locacao/cadLocacao');  
+        return view('head') .
+            view('locacao/cadLocacao') . 
+            view('footer');  
     }
 }

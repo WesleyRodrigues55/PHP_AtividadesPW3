@@ -16,14 +16,16 @@ class Funcionario extends BaseController
         $query = $builder->get()->getResultArray();
 
         foreach ($query as $key => $value) {
-            $query[$key]['alterar'] = '<a href="view_alterar/' . $value['TB_FUNCIONARIO_ID'] . '">Alterar</a>';
-            $query[$key]['excluir'] = '<a href="excluir/' . $value['TB_FUNCIONARIO_ID'] . '">Excluir</a>';
+            $query[$key]['alterar'] = '<a href="view_alterar/' . $value['TB_FUNCIONARIO_ID'] . '" class="btn btn-dark">Alterar</a>';
+            $query[$key]['excluir'] = '<a href="excluir/' . $value['TB_FUNCIONARIO_ID'] . '" class="btn btn-danger">Excluir</a>';
 
             unset($query[$key]['TB_CARGO_ID']); 
         }
         $table['tabela'] = $query;
         
-		return view('funcionario/funcionario', $table);
+		return view('head') .
+            view('funcionario/funcionario', $table) . 
+            view('footer');
 	}
 
     public function view_alterar($id = null)
@@ -34,7 +36,9 @@ class Funcionario extends BaseController
 
         $dados['dados'] = $data;
 
-        echo view('funcionario/alterfuncionario', $dados);
+        echo view('head') .
+            view('funcionario/alterfuncionario', $dados) . 
+            view('footer');
     }
 
     public function alterar()
@@ -78,6 +82,8 @@ class Funcionario extends BaseController
 
     public function cadastrar()
     {
-        return view('funcionario/cadFuncionario');  
+        return view('head') .
+            view('funcionario/cadFuncionario') . 
+            view('footer');  
     }
 }
